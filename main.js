@@ -39,6 +39,63 @@ app.post("/proxy", async (req, res) => {
     }
 });
 
+app.post("/payment/nuvei/tokenized-payment", async (req, res) => {
+    const url = `https://orokii-ppg-gateway-api-730399970440.us-central1.run.app/api/v1/payment/nuvei/tokenized-payment`;
+    const body = req.body;
+    const headers = {
+        'Content-Type': 'application/json',
+        'x-orokii-client-id': req.headers['x-orokii-client-id'],
+        'Authorization': req.headers['authorization'], // Keep token intact
+    };
+    
+    try {
+        const response = await axios.post(
+            url,
+            body,
+            {
+                headers: headers
+            }
+        );
+
+        res.status(response.status).json(response.data);
+    } catch (error) {
+        console.error("Error:", error.message);
+        res.status(error.response?.status || 500).json({
+            error: "Internal Server Error",
+            details: error.response?.data || error.message,
+        });
+    }
+});
+
+app.post("/payment/nuvei/simple-card-tokenized", async (req, res) => {
+    const url = `https://orokii-ppg-gateway-api-730399970440.us-central1.run.app/api/v1/payment/nuvei/simple-card-tokenized`;
+    const body = req.body;
+    const headers = {
+        'Content-Type': 'application/json',
+        'x-orokii-client-id': req.headers['x-orokii-client-id'],
+        'Authorization': req.headers['authorization'], // Keep token intact
+    };
+    
+    try {
+        const response = await axios.post(
+            url,
+            body,
+            {
+                headers: headers
+            }
+        );
+
+        res.status(response.status).json(response.data);
+    } catch (error) {
+        console.error("Error:", error.message);
+        res.status(error.response?.status || 500).json({
+            error: "Internal Server Error",
+            details: error.response?.data || error.message,
+        });
+    }
+});
+
+
 app.listen(PORT, () => {
     console.log(`Proxy server running on http://localhost:${PORT}`);
 });
