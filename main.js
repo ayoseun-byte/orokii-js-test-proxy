@@ -14,7 +14,7 @@ const CLIENT_SECRET = "6zz7U4m4YDRvAp0MNYALfNix4zy4sqeETnwMhn9a5kM=";
 const MERCHANT_ID = "64b5f2fd-d97f-4797-91d7-d63fb2b5ed9c";
 const AUTH_HEADER = "Basic " + Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString("base64");
 
-app.post("/proxy", async (req, res) => {
+app.get("/proxy", async (req, res) => {
     const url = `https://orokii-ppg-gateway-api-730399970440.us-central1.run.app/api/v1/auth/${MERCHANT_ID}/get-access-token`;
 
     try {
