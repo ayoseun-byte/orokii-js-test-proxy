@@ -9,13 +9,14 @@ app.use(express.json());
 app.use(cors()); // Enable CORS for all origins
 
 // Replace with your credentials
-const CLIENT_ID = "4121062054";
-const CLIENT_SECRET = "6zz7U4m4YDRvAp0MNYALfNix4zy4sqeETnwMhn9a5kM=";
-const MERCHANT_ID = "64b5f2fd-d97f-4797-91d7-d63fb2b5ed9c";
+const CLIENT_ID = "1864031330"// "4121062054";
+const CLIENT_SECRET ="lJUudU3HrRJNuFpgP4J7SvlZCQpSOrpbmfE9xN1z09w="// "6zz7U4m4YDRvAp0MNYALfNix4zy4sqeETnwMhn9a5kM=";
+const MERCHANT_ID ="00f38c77-dd77-4995-b052-7fc9157c76c0"// "64b5f2fd-d97f-4797-91d7-d63fb2b5ed9c";
 const AUTH_HEADER = "Basic " + Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString("base64");
-
+const BASEURL="https://orokiipay-payment-gateway-prod-994139363684.us-central1.run.app"//https://orokii-ppg-gateway-api-730399970440.us-central1.run.app
 app.get("/proxy", async (req, res) => {
-    const url = `https://orokii-ppg-gateway-api-730399970440.us-central1.run.app/api/v1/auth/${MERCHANT_ID}/get-access-token`;
+    
+    const url = `${BASEURL}/api/v1/auth/${MERCHANT_ID}/get-access-token`;
 
     try {
         const response = await axios.post(
@@ -28,7 +29,7 @@ app.get("/proxy", async (req, res) => {
                 },
             }
         );
-
+console.log(response.data)
         res.status(response.status).json(response.data);
     } catch (error) {
         console.error("Error:", error.message);
