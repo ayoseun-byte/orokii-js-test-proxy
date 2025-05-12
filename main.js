@@ -14,7 +14,7 @@ const MERCHANT_SECRET = process.env.MERCHANT_SECRET
 const CLIENT_AUTH = process.env.CLIENT_AUTH
 const MERCHANT_ID =  process.env.MERCHANT_ID
 const AUTH_HEADER = "Basic " + Buffer.from(`${CLIENT_AUTH}:${MERCHANT_SECRET}`).toString("base64");
-const BASE_URL= process.env.BASE_URL_LOCAL
+const BASE_URL= process.env.BASE_URL
 
 //generate uuid npm install uuid
 const { v4: uuidv4 } = require('uuid');
