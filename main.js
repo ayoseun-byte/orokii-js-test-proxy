@@ -92,7 +92,7 @@ app.get("/utils/crypto-prices/:ids", async (req, res) => {
     }
 });
 
-app.post("/payment/nuvei/tokenized-payment", async (req, res) => {
+app.post("/payment/nuvei/payment-card-token-id", async (req, res) => {
     const url = `${BASE_URL}/payment/nuvei/tokenized-payment`;
     const body = req.body;
     const headers = {
@@ -121,7 +121,7 @@ app.post("/payment/nuvei/tokenized-payment", async (req, res) => {
 });
 
 app.post("/payment/nuvei/simple-card-tokenized", async (req, res) => {
-    const url = `${BASE_URL}/api/v1/payment/nuvei/simple-card-tokenized`;
+    const url = `${BASE_URL}/payment/nuvei/simple-card-tokenized`;
     const body = req.body;
     const headers = {
         'Content-Type': 'application/json',
@@ -149,7 +149,7 @@ app.post("/payment/nuvei/simple-card-tokenized", async (req, res) => {
 });
 
 app.post("/payment/nuvei/payment-ach-token-id", async (req, res) => {
-    const url = `${BASE_URL}/api/v1/payment/nuvei/payment-ach-token-id`;
+    const url = `${BASE_URL}/payment/nuvei/payment-ach-token-id`;
     const body = req.body;
     const headers = {
         'Content-Type': 'application/json',
@@ -177,7 +177,7 @@ app.post("/payment/nuvei/payment-ach-token-id", async (req, res) => {
 });
 
 app.post("/payment/nuvei/payment-ach", async (req, res) => {
-    const url = `${BASE_URL}/api/v1/payment/nuvei/payment-ach`;
+    const url = `${BASE_URL}/payment/nuvei/payment-ach`;
     const body = req.body;
     const headers = {
         'Content-Type': 'application/json',
