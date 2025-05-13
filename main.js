@@ -123,6 +123,7 @@ app.post("/payment/nuvei/payment-card-token-id", async (req, res) => {
 app.post("/payment/nuvei/simple-card-tokenized", async (req, res) => {
     const url = `${BASE_URL}/payment/nuvei/simple-card-tokenized`;
     const body = req.body;
+
     const headers = {
         'Content-Type': 'application/json',
         'x-orokii-client-id': req.headers['x-orokii-client-id'],
