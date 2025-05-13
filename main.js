@@ -17,6 +17,8 @@ const AUTH_HEADER = "Basic " + Buffer.from(`${CLIENT_AUTH}:${MERCHANT_SECRET}`).
 const BASE_URL = process.env.BASE_URL
 const CRYPTO_BASE_URL = process.env.CRYPTO_BASE_URL
 const CRYPTO_API_KEYS = process.env.CRYPTO_API_KEYS
+const BTC_PAY_BASE_URL = process.env.BTC_PAY_BASE_URL
+const BTC_PAY_API_KEY = process.env.BTC_PAY_API_KEY
 //generate uuid npm install uuid
 const { v4: uuidv4 } = require('uuid');
 
@@ -38,6 +40,27 @@ app.get("/proxy", async (req, res) => {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
             }
+        );
+        res.status(response.status).json(response.data);
+    } catch (error) {
+        console.error("Error:", error.message);
+        res.status(error.response?.status || 500).json({
+            error: "Internal Server Error",
+            details: error.response?.data || error.message,
+        });
+    }
+});
+
+
+app.post("/btc-pay", async (req, res) => {
+
+    const { amount } = req.body;
+
+    try {
+        const response = await axios.post(
+            BTC_PAY_BASE_URL,
+            { amount: amount, currency: 'USD' },
+            { 'Authorization': `token ${BTC_PAY_API_KEY}`, 'Content-Type': 'application/json' }
         );
         res.status(response.status).json(response.data);
     } catch (error) {
